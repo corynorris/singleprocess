@@ -8,12 +8,7 @@ defmodule SingleProcessWeb.PageController do
 
   @spec start(Plug.Conn.t(), any()) :: Plug.Conn.t()
   def start(conn, _params) do
-    if MyProcess.running?() do
-      redirect(conn, to: "/")
-    else
-      MyProcess.start()
-      MyProcess.set_running_flag()
-      redirect(conn, to: "/")
-    end
+    MyProcess.start()
+    redirect(conn, to: "/")
   end
 end

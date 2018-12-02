@@ -3,6 +3,7 @@ defmodule SingleProcess.Application do
   # for more information on OTP Applications
   @moduledoc false
 
+  import Supervisor.Spec
   use Application
 
   def start(_type, _args) do
@@ -12,10 +13,10 @@ defmodule SingleProcess.Application do
       SingleProcessWeb.Endpoint,
       # Starts a worker by calling: SingleProcess.Worker.start_link(arg)
       # {SingleProcess.Worker, arg},
-      SingleProcess.MyProcess
+      worker(SingleProcess.MyProcess, [[name: :my_process]])
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
+    # See https://hexdocs.pm/elixiSr/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: SingleProcess.Supervisor]
     Supervisor.start_link(children, opts)
