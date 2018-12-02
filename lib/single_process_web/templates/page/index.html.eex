@@ -1,0 +1,10 @@
+<div class="container">
+  <button id="start-button" class="ui primary button">
+    Start #1 (JS, works)
+  </button>
+  <%= button("Start #2 (POST, fails)", to: "/start", class: "ui red button") %>
+
+  <div class="ui segment">
+    <div id="messages"></div>
+  </div>
+</div>
